@@ -1,0 +1,4 @@
+composer.phar
+/tmp/cache/wordpress.test
+/view/test.php
+# !/tmp/cache/index.php
