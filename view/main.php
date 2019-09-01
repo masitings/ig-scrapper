@@ -21,6 +21,13 @@
 					</div>
 				<?php endif ?>
 			<?php endif ?>
+			<?php if (isset($_POST['scrape'])): ?>
+				<?php if (process_scrape()): ?>
+					<div class="alert alert-success">
+						<p>Success scrape data to the new.</p>
+					</div>
+				<?php endif ?>
+			<?php endif ?>
 			<div class="panel panel-default">
 				<div class="panel-heading">Configuration</div>
 				<div class="panel-body">
@@ -50,7 +57,6 @@
 									<label>Account Password</label>
 									<input type="password" name="ig_password" class="form-control" placeholder="Your IG Password" value="<?= get_option('ig_password', '');?>">
 								</div>
-								<button type="submit" name="saveConfig" class="btn btn-primary btn-sm">Save Configuration</button>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
@@ -76,8 +82,27 @@
 									<small>Limit of fetch (Right now just reach at 12)</small>
 								</div>
 							</div>
+							<div class="col-md-12">
+								<button type="submit" name="saveConfig" class="btn btn-primary btn-sm">Save Configuration</button>
+							</div>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">How to use</div>
+				<div class="panel-body">
+					<form action="" method="post">
+						<button type="submit" name="scrape" class="btn btn-success btn-xs">Fetch data</button>
+					</form>
+					<p>
+						Last Update : <b><i><?= get_option('last_updates_ig');?></i></b>
+						<ol>
+							<li>Put the instagram username (public) and password (private)</li>
+							<li>Save the configuration for each changed</li>
+							<li>To call the data, use this function in your code <code>serve_ig_scrape()</code> and do the loop for each data.</li>
+						</ol>
+					</p>
 				</div>
 			</div>
 		</div>

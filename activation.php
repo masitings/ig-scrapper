@@ -40,7 +40,7 @@ function delete_db_igs()
 function ig_scrape_menu()
 {
     add_menu_page('IG Scrapper', 'IG Scrapper', 'manage_options', 'ig-scrapper', 'main_ig_view', 'dashicons-instagram');
-    add_submenu_page('ig-scrapper', 'Test Mode', 'Test Menu', 'manage_options', 'test', 'test_ig_view');
+    // add_submenu_page('ig-scrapper', 'Test Mode', 'Test Menu', 'manage_options', 'test_igs', 'test_ig_view');
 }
 
 function LoadViews($name, $data = array()) 
@@ -48,11 +48,40 @@ function LoadViews($name, $data = array())
     extract($data);
     include "view/$name.php";
 }
+
 function test_ig_view()
 {
-	LoadViews('Test');
+	LoadViews('test');
 }
+
 function main_ig_view()
 {
 	LoadViews('main');
 }
+
+// Cron Job
+function wp_pinterin_schedules($schedules) {
+
+    $schedules['weekly'] = array(
+        'interval' => 10080,
+        'display' => __('Once Weekly')
+    );
+
+    $schedules['monthly'] = array(
+        'interval' => 43800,
+        'display' => __('Once Monthly')
+    );
+
+    return  $schedules;
+}
+
+add_filter ( 'cron_schedules', 'wp_pinterin_schedules' );
+
+
+// if (! wp_next_scheduled ( 'wp_ig_scrape_hook' )) {
+    $interval = get_option('ig_interval', 'daily');
+    wp_schedule_event ( time (), $interval, 'wp_ig_scrape_hook' );
+// }
+add_action ( 'wp_ig_scrape_hook', 'process_scrape' );
+
+
