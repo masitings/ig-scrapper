@@ -7,8 +7,10 @@ function create_db_igs()
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
         $sql = "CREATE TABLE " . $table_name . "(
                 id INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                type ENUM('image', 'video') NOT NULL default 'image',
                 image_url varchar(255) NOT NULL,
                 image_link TEXT NULL,
+                comment INT NULL,
                 caption TEXT NULL,
                 username varchar(255) NOT NULL
                 )";
@@ -20,9 +22,10 @@ function create_db_igs()
 
 function update_configuration()
 {
-    update_option('ig_type', $_POST['ig_type']);
-    update_option('ig_username', $_POST['ig_username']);
-    update_option('ig_password', $_POST['ig_password']);
+    foreach ($_POST as $key => $value) {
+        update_option( $key, $value );
+    }
+    
     return true;
 }
 

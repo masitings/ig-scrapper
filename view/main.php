@@ -52,6 +52,30 @@
 								</div>
 								<button type="submit" name="saveConfig" class="btn btn-primary btn-sm">Save Configuration</button>
 							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Fetch Interval </label>
+									<select name="ig_interval" class="form-control">
+										<?php 
+											$intr = ['daily', 'weekly', 'monthly'];
+											$int_val = get_option('ig_interval', '');
+										?>
+										<?php foreach ($intr as $key => $value): ?>
+											<?php if ($int_val !== '' && $int_val === $value): ?>
+												<option value="<?= $value;?>" selected><?= ucwords($value);?></option>
+											<?php else : ?>
+												<option value="<?= $value;?>"><?= ucwords($value);?></option>
+											<?php endif ?>
+											
+										<?php endforeach ?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Limit Fetch</label>
+									<input type="number" class="form-control" name="ig_limit" value="<?= get_option('ig_limit', 10);?>" max="12">
+									<small>Limit of fetch (Right now just reach at 12)</small>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
