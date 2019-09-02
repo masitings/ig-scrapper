@@ -66,6 +66,7 @@
 		return $data;
 	}
 
+
 	function save_to_db($post, $username)
 	{
 		global $wpdb;
@@ -75,7 +76,7 @@
 			'image_url'		=> $post['image'],
 			'image_link'	=> $post['link'],
 			'comment'		=> (int)$post['total_comment'],
-			// 'caption'		=> $post['caption'],
+			// 'caption'		=> $wpdb->_real_escape($post['caption']),
 			'username'		=> $username
 		];
 

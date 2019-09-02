@@ -7,7 +7,7 @@ function create_db_igs()
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
         $sql = "CREATE TABLE " . $table_name . "(
                 id INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                type ENUM('image', 'video') NULL default 'image',
+                type varchar(255) NOT NULL,
                 image_url varchar(255) NOT NULL,
                 image_link TEXT NULL,
                 comment INT NULL,
