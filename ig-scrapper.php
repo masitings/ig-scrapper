@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Instagram Scrapper (Developer Version)
-Plugin URI: https://semanthic.com/
+Plugin URI: https://fixxdigital.com/
 Description: Plugin for scrape feed from instagram.
-Version: 1.0.1
-Author: Semanthic
-Author URI: https://semanthic.com/
-License: Semanthic.
+Version: 1.0.2
+Author: Fixx Digital
+Author URI: https://fixxdigital.com/
+License: Fixx Digital.
 */
 
 //Updater
