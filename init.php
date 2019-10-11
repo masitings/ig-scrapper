@@ -33,6 +33,16 @@
 		return $wpdb->print_error();
 	}
 
+	function delete_all_cache(){
+		$upload = wp_upload_dir();
+		$files = glob($upload['basedir'].'/instagram-cache/*');
+		foreach ($files as $file) {
+			if (is_file($file)) {
+				unlink($file);
+			}
+		}
+	}
+
 	function process_scrape()
 	{
 		$username = get_option('ig_username');
@@ -46,7 +56,7 @@
 			if ($scrape['total'] == count($arr)) {
 				update_option('last_updates_ig', date('F jS, Y H:i:s'));
 			}
-			$result = true;	
+			$result = $arr;	
 		} else {
 			$result = $scrape;
 		}
@@ -61,8 +71,10 @@
 		if ($check[0]->total > 0) {
 			$data = $wpdb->get_results("DELETE FROM $table_name");
 		} else {
+			
 			$data = true;
 		}
+		delete_all_cache();
 		return $data;
 	}
 
@@ -71,9 +83,24 @@
 	{
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'ig_scrape';
+		$upload = wp_upload_dir();
+		$image = explode("?", $post['image']);
+		$filename = basename($image[0]);
+		$path = $upload['basedir'] . '/instgram-cache/';
+
+		if (!is_dir($path) && !file_exists($path)) {
+			mkdir($upload['basedir'].'/instagram-cache/', 0777, true);
+		} 
+
+		if (!file_exists($upload['basedir']. '/instagram-cache/'.$filename)) {
+			$image = file_get_contents($post['image']);
+			file_put_contents($upload['basedir'].'/instagram-cache/'.$filename, $image);
+		}
+		
 		$args = [
 			'type'			=> $post['type'],
 			'image_url'		=> $post['image'],
+			'image_cache'	=> $filename,
 			'image_link'	=> $post['link'],
 			'comment'		=> (int)$post['total_comment'],
 			// 'caption'		=> $wpdb->_real_escape($post['caption']),

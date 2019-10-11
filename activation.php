@@ -9,6 +9,7 @@ function create_db_igs()
                 id INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 type varchar(255) NOT NULL,
                 image_url varchar(255) NOT NULL,
+                image_cache varchar(255) NOT NULL,
                 image_link TEXT NULL,
                 comment INT NULL,
                 caption TEXT NULL,
@@ -78,10 +79,11 @@ function wp_pinterin_schedules($schedules) {
 add_filter ( 'cron_schedules', 'wp_pinterin_schedules' );
 
 
-// if (! wp_next_scheduled ( 'wp_ig_scrape_hook' )) {
+if (! wp_next_scheduled ( 'wp_ig_scrape_hook' )) {
     $interval = get_option('ig_interval', 'daily');
     wp_schedule_event ( time (), $interval, 'wp_ig_scrape_hook' );
-// }
+}
+
 add_action ( 'wp_ig_scrape_hook', 'process_scrape' );
 
 
