@@ -21,6 +21,7 @@
 					</div>
 				<?php endif ?>
 			<?php endif ?>
+
 			<?php if (isset($_POST['scrape'])): ?>
 				<?php if (process_scrape()): ?>
 					<div class="alert alert-success">
@@ -28,6 +29,7 @@
 					</div>
 				<?php endif ?>
 			<?php endif ?>
+			
 			<div class="panel panel-default">
 				<div class="panel-heading">Configuration</div>
 				<div class="panel-body">
