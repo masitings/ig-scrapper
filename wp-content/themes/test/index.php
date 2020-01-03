@@ -1,4 +1,5 @@
 <pre>
 <?php 
-$data = get_account_medias('capitolsingapore');
-print_r(json_encode($data));
+$data = testScrape();
+var_dump($data['medias']);
+// print_r(json_encode($data));
