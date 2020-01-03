@@ -1,0 +1,4 @@
+[submodule "plugin"]
+	path = ig-scrapper
+	url = git@github.com:masitings/ig-scrapper.git
+	branch = master
