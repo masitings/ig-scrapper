@@ -37,4 +37,14 @@ class IGScrapper
 			return false;
 		}
 	}
+
+	public function tests()
+	{
+		$itis = $this->init();
+		if ($itis) {
+			return $itis->getAccount('capitolsingapore');
+		} else {
+			return false;
+		}
+	}
 }

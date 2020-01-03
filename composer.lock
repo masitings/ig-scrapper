@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "b59eb29dda761a0cbb7ee6feb751c563",
@@ -96,15 +96,15 @@
             "authors": [
                 {
                     "name": "Khoa Bui",
-                    "role": "Developer",
                     "email": "khoaofgod@gmail.com",
-                    "homepage": "http://www.phpfastcache.com"
+                    "homepage": "http://www.phpfastcache.com",
+                    "role": "Developer"
                 },
                 {
                     "name": "Georges.L",
-                    "role": "Developer",
                     "email": "contact@geolim4.com",
-                    "homepage": "https://github.com/Geolim4"
+                    "homepage": "https://github.com/Geolim4",
+                    "role": "Developer"
                 }
             ],
             "description": "PHP Cache Class - Reduce your database call using cache system. PhpFastCache handles a lot of drivers such as Apc(u), CouchBase, Mongodb, Files, (P)redis, Leveldb, Memcache(d), Ssdb, Sqlite, Wincache, Xcache, Zend Data Cache.",
@@ -168,15 +168,15 @@
             "authors": [
                 {
                     "name": "Khoa Bui",
-                    "role": "Developer",
                     "email": "khoaofgod@gmail.com",
-                    "homepage": "http://www.phpfastcache.com"
+                    "homepage": "http://www.phpfastcache.com",
+                    "role": "Developer"
                 },
                 {
                     "name": "Georges.L",
-                    "role": "Developer",
                     "email": "contact@geolim4.com",
-                    "homepage": "https://github.com/Geolim4"
+                    "homepage": "https://github.com/Geolim4",
+                    "role": "Developer"
                 }
             ],
             "description": "PHP SSDB Driver for phpFastCache",

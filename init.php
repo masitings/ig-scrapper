@@ -13,7 +13,7 @@ function get_account_medias($username)
 			$result = [
 				'status'	=> 200,
 				'msg'		=> 'Success',
-				// 'data'		=> $ig['medias']
+				'data'		=> $ig,
 				'total'		=> count(parsing_media($ig['medias'])),
 				'data'		=> parsing_media($ig['medias'])
 			];
@@ -59,7 +59,7 @@ function process_scrape()
 		}
 		$result = $arr;
 	} else {
-		$result = $scrape;
+		$result = false;
 	}
 	return $result;
 }
@@ -137,7 +137,7 @@ function parsing_media($media)
 	foreach ($media as $key => $value) {
 		$arr[$key]['type'] = $value['type'];
 		$arr[$key]['link'] = $value['link'];
-		$arr[$key]['image'] = $value['imageHighResolutionUrl'];
+		$arr[$key]['image'] = $value['imageThumbnailUrl'];
 		$arr[$key]['caption'] = $value['caption'];
 		$arr[$key]['total_comment'] = $value['commentsCount'];
 		if ($i == $limit) {
@@ -147,3 +147,9 @@ function parsing_media($media)
 	}
 	return $arr;
 }
+
+// function testScrape()
+// {
+// 	$ig = new IGScrapper();
+// 	return $ig->tests();
+// }
